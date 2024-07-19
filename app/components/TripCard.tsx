@@ -17,6 +17,7 @@ export const TripCard: React.FC<TripCardProps> = ({ trip }) => {
           width={464}
           height={206}
           className="object-cover w-full h-full"
+          priority={false}
         />
       </div>
       <div className="flex flex-col justify-between flex-1 p-5 text-left">
