@@ -1,12 +1,24 @@
+'use client'
 import React, { useState, useEffect } from 'react'
 import { Footer, Header } from './ui'
 import { TripList } from './components'
+import { fetchTrips } from './api'
+import { Trip } from './types'
+import NavButton from './ui/NavButton'
+import { NAVBAR_BUTTONS_TEXT } from './utils/constants'
+import NavBar from './ui/NavBar'
+
 const HomePage: React.FC = () => {
   const [trips, setTrips] = useState<Trip[]>([])
 
 import Image from "next/image";
 
 export default function Home() {
+
+  useEffect(() => {
+    fetchTrips().then(setTrips)
+  }, [])
+
 
   return (
     <div>
@@ -113,16 +125,7 @@ export default function Home() {
         </div>
 
         <nav className="flex justify-center mb-12">
-          {/* // TODO: Componetizar botones. A ui folder y comparar con Figma */}
-          <button className="p-4 text-gray-800 bg-gray-200 rounded-l-full focus:outline-none focus:ring-2 focus:ring-black">
-            All
-          </button>
-          <button className="p-4 text-gray-800 bg-gray-200 focus:outline-none focus:ring-2 focus:ring-black">
-            Upcoming
-          </button>
-          <button className="p-4 text-gray-800 bg-gray-200 rounded-r-full focus:outline-none focus:ring-2 focus:ring-black">
-            Completed
-          </button>
+          <NavBar buttonsText={NAVBAR_BUTTONS_TEXT} />
         </nav>
         <TripList trips={filteredTrips} />
       </main>
