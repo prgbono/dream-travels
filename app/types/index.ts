@@ -3,6 +3,7 @@ export interface Trip {
   title: string
   description: string
   photo_url: string
+  status: string
   itinerary: string[]
   completed: boolean
 }
