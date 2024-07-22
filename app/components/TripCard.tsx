@@ -1,15 +1,31 @@
 import React from 'react'
 import { Trip } from '../types'
 import Image from 'next/image'
+import { useTrips } from '../hooks'
 
 interface TripCardProps {
   trip: Trip
+  setIsTripDetailsOpened: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const TripCard: React.FC<TripCardProps> = ({ trip }) => {
-  const { title, description, photo_url } = trip
+export const TripCard: React.FC<TripCardProps> = ({
+  trip,
+  setIsTripDetailsOpened
+}) => {
+  const { description, id, photo_url, title } = trip
+  const { setTripSelectedIdTitle } = useTrips()
+
+  const handleSelectedTrip = (id: number) => {
+    // setTripSelectedIdId(id) //FIXME: There is a duplicated id=5
+    setTripSelectedIdTitle(title)
+    setIsTripDetailsOpened(true)
+  }
+
   return (
-    <div className="flex mx-12 my-4 overflow-hidden border border-gray-400 rounded-[20px]">
+    <div
+      className="flex mx-12 my-4 overflow-hidden border border-gray-400 rounded-[20px]"
+      onClick={() => handleSelectedTrip(id)}
+    >
       <div className="w-[704px] h-[300px]">
         <Image
           src={photo_url}
