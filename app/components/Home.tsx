@@ -7,12 +7,13 @@ import { TripList } from './TripList'
 import { TripDetails } from './TripDetails'
 import { NAVBAR_BUTTONS_TEXT } from '../utils/constants'
 import { Trip } from '../types'
+import TripForm from './TripForm'
 
 const Home: React.FC = () => {
   const [filter, setFilter] = useState<string>('')
+  const { trips, isLoading, error, tripSelectedIdTitle } = useTrips()
   const [isTripDetailsOpened, setIsTripDetailsOpened] = useState<boolean>(false)
-  const { trips, isLoading, error, tripSelected, tripSelectedIdTitle } =
-    useTrips()
+  const [isTripFormOpened, setIsTripFormOpened] = useState<boolean>(false)
 
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>There was an error fetching data...</div>
@@ -51,16 +52,20 @@ const Home: React.FC = () => {
         <TripList
           trips={filteredTrips}
           setIsTripDetailsOpened={setIsTripDetailsOpened}
+          setIsTripFormOpened={setIsTripFormOpened}
         />
       </main>
       <Footer />
 
       {isTripDetailsOpened && (
         <TripDetails
-          // tripId={tripSelected} FIXME: There is a duplicated id=5
           tripTitle={tripSelectedIdTitle}
           setIsTripDetailsOpened={setIsTripDetailsOpened}
         />
+      )}
+
+      {isTripFormOpened && (
+        <TripForm setIsTripFormOpened={setIsTripFormOpened} />
       )}
     </>
   )

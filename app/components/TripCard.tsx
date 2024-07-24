@@ -3,14 +3,16 @@ import { Trip } from '../types'
 import Image from 'next/image'
 import { useTrips } from '../hooks'
 
-interface TripCardProps {
+type TripCardProps = {
   trip: Trip
   setIsTripDetailsOpened: React.Dispatch<React.SetStateAction<boolean>>
+  setIsTripFormOpened: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const TripCard: React.FC<TripCardProps> = ({
   trip,
-  setIsTripDetailsOpened
+  setIsTripDetailsOpened,
+  setIsTripFormOpened
 }) => {
   const { description, photo_url, title } = trip
   const { deleteTrip, editTrip, setTripSelectedIdTitle } = useTrips()
@@ -25,6 +27,7 @@ export const TripCard: React.FC<TripCardProps> = ({
   }
 
   const handleEditTrip = (trip: Trip) => {
+    setIsTripFormOpened(true)
     editTrip(trip)
   }
 
@@ -51,7 +54,10 @@ export const TripCard: React.FC<TripCardProps> = ({
           <div className="space-x-4">
             <button
               className="underline hover:text-gray-700"
-              onClick={() => handleEditTrip(trip)}
+              onClick={(e) => {
+                e.stopPropagation()
+                handleEditTrip(trip)
+              }}
             >
               Edit
             </button>
