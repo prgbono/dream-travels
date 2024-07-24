@@ -1,4 +1,5 @@
 import { Trip } from '../types'
+import Popup from '../ui/Popup'
 
 type TripFormProps = {
   // TODO: Optional because the form can be for creating or editting
@@ -9,9 +10,8 @@ type TripFormProps = {
 const TripForm: React.FC<TripFormProps> = ({ setIsTripFormOpened }) => {
   // TODO: Refactor this form, DRY
   return (
-    <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
+    <Popup>
       <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg">
-        {/* <div className="bg-white rounded-lg shadow-lg max-w-lg w-full relative overflow-hidden"> */}
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-2xl font-semibold">Create a trip</h2>
           <button
@@ -82,7 +82,7 @@ const TripForm: React.FC<TripFormProps> = ({ setIsTripFormOpened }) => {
           </button>
         </form>
       </div>
-    </div>
+    </Popup>
   )
 }
 

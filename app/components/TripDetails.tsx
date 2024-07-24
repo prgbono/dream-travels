@@ -2,9 +2,9 @@ import Image from 'next/image'
 import { Trip } from '../types'
 import { useEffect, useState } from 'react'
 import { useTrips } from '../hooks'
+import Popup from '../ui/Popup'
 
-interface TripDetailsProps {
-  // tripTitle: number, //FIXME: There is a duplicate of id=5
+type TripDetailsProps = {
   tripTitle: string
   setIsTripDetailsOpened: React.Dispatch<React.SetStateAction<boolean>>
 }
@@ -27,7 +27,7 @@ export const TripDetails: React.FC<TripDetailsProps> = ({
   return !trip || Object.keys(trip).length === 0 ? (
     <h1>we do not have that trip... so far!</h1>
   ) : (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
+    <Popup>
       <div className="bg-white rounded-lg shadow-lg max-w-lg w-full relative overflow-hidden">
         <button
           className="absolute top-4 right-4 text-white hover:text-gray-700 focus:outline-none"
@@ -94,6 +94,6 @@ export const TripDetails: React.FC<TripDetailsProps> = ({
           </div>
         </div>
       </div>
-    </div>
+    </Popup>
   )
 }
