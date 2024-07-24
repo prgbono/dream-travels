@@ -38,7 +38,8 @@ export const TripsProvider: React.FC<{ children: React.ReactNode }> = ({
       setTrips([trip, ...trips])
     } else {
       const updatedTrips = [...trips]
-      updatedTrips[tripData.id] = trip
+      updatedTrips[tripData.id - 1] = trip
+      // FIXME: This will fail while there is a duplicated id = 5 in the data
       setTrips(updatedTrips)
     }
   }
