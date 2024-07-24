@@ -27,8 +27,8 @@ export const TripCard: React.FC<TripCardProps> = ({
   }
 
   const handleEditTrip = (trip: Trip) => {
+    setTripSelectedIdTitle(trip.title)
     setIsTripFormOpened(true)
-    editTrip(trip)
   }
 
   return (

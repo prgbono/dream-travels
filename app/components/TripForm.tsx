@@ -1,15 +1,21 @@
+import { useState } from 'react'
 import { Trip } from '../types'
-import { CloseButton } from '../ui'
-import Popup from '../ui/Popup'
+import { CloseButton, Popup } from '../ui'
 
 type TripFormProps = {
-  // TODO: Optional because the form can be for creating or editting
   trip?: Trip
   setIsTripFormOpened: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const TripForm: React.FC<TripFormProps> = ({ setIsTripFormOpened }) => {
-  // TODO: Refactor this form, can have inputs and divs for design-system to be standar and reused
+const TripForm: React.FC<TripFormProps> = ({ trip, setIsTripFormOpened }) => {
+  // TODO: React Hook Form
+  const [tripName, setTripName] = useState(trip ? trip.title : '')
+  const [tripIntro, setTripIntro] = useState(trip ? trip.introduction : '')
+  const [tripDescription, setTripDescription] = useState(
+    trip ? trip.description : ''
+  )
+  const [tripImage, setTripImage] = useState(trip ? trip.photo_url : '')
+
   return (
     <Popup>
       <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg">
@@ -29,6 +35,8 @@ const TripForm: React.FC<TripFormProps> = ({ setIsTripFormOpened }) => {
               type="text"
               className="w-full border rounded-full p-3"
               placeholder="Italy"
+              value={tripName}
+              onChange={(e) => setTripName(e.target.value)}
             />
           </div>
           <div className="mb-4">
@@ -39,6 +47,8 @@ const TripForm: React.FC<TripFormProps> = ({ setIsTripFormOpened }) => {
               type="text"
               className="w-full border rounded-xl p-3"
               placeholder="From Rome to Venice..."
+              value={tripIntro}
+              onChange={(e) => setTripIntro(e.target.value)}
             />
           </div>
           <div className="mb-4">
@@ -46,6 +56,8 @@ const TripForm: React.FC<TripFormProps> = ({ setIsTripFormOpened }) => {
             <textarea
               className="w-full border rounded-xl p-3"
               placeholder="Discover the wonders of the Roman empire..."
+              value={tripDescription}
+              onChange={(e) => setTripDescription(e.target.value)}
             />
           </div>
           <div className="mb-4">
@@ -54,8 +66,11 @@ const TripForm: React.FC<TripFormProps> = ({ setIsTripFormOpened }) => {
               type="text"
               className="w-full border rounded-full p-3"
               placeholder="Image URL"
+              value={tripImage}
+              onChange={(e) => setTripImage(e.target.value)}
             />
           </div>
+          {/*  TODO: Itenerary */}
           <div className="mb-4">
             <label className="block text-gray-700 mb-4">
               Day by day itinerary

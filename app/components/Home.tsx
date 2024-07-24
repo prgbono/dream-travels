@@ -11,7 +11,8 @@ import TripForm from './TripForm'
 
 const Home: React.FC = () => {
   const [filter, setFilter] = useState<string>('')
-  const { trips, isLoading, error, tripSelectedIdTitle } = useTrips()
+  const { trips, isLoading, error, getTripDataByTitle, tripSelectedIdTitle } =
+    useTrips()
   const [isTripDetailsOpened, setIsTripDetailsOpened] = useState<boolean>(false)
   const [isTripFormOpened, setIsTripFormOpened] = useState<boolean>(false)
 
@@ -26,7 +27,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <Header />
+      <Header setIsTripFormOpened={setIsTripFormOpened} />
       <main className="min-h-screen py-12 text-center">
         <div className="mb-4 text-center">
           <h1 className="mb-4 text-4xl">The places you dream of</h1>
@@ -65,7 +66,10 @@ const Home: React.FC = () => {
       )}
 
       {isTripFormOpened && (
-        <TripForm setIsTripFormOpened={setIsTripFormOpened} />
+        <TripForm
+          trip={getTripDataByTitle()}
+          setIsTripFormOpened={setIsTripFormOpened}
+        />
       )}
     </>
   )
