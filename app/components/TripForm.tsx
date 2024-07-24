@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Trip } from '../types'
 import { CloseButton, Popup } from '../ui'
+import { useTrips } from '../hooks'
 
 type TripFormProps = {
   trip?: Trip
@@ -15,6 +16,22 @@ const TripForm: React.FC<TripFormProps> = ({ trip, setIsTripFormOpened }) => {
     trip ? trip.description : ''
   )
   const [tripImage, setTripImage] = useState(trip ? trip.photo_url : '')
+  const { addOrUpdateTrip } = useTrips()
+
+  const handleSaveTrip = () => {
+    const newTrip: Trip = {
+      id: trip ? trip.id : Math.floor(Math.random() * 1000000),
+      title: tripName,
+      description: tripDescription,
+      introduction: tripIntro,
+      photo_url: tripImage,
+      status: 'todo',
+      // TODO:
+      itinerary: []
+    }
+    addOrUpdateTrip(newTrip)
+    setIsTripFormOpened(false)
+  }
 
   return (
     <Popup>
@@ -97,6 +114,9 @@ const TripForm: React.FC<TripFormProps> = ({ trip, setIsTripFormOpened }) => {
           <button
             type="submit"
             className="w-auto bg-black text-white py-3 px-16 rounded-full"
+            onClick={() => {
+              handleSaveTrip()
+            }}
           >
             Save
           </button>

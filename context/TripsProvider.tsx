@@ -30,8 +30,17 @@ export const TripsProvider: React.FC<{ children: React.ReactNode }> = ({
     trips.find((trip) => trip.title === tripSelectedIdTitle)
   const deleteTrip = (title: string) =>
     setTrips(trips.filter((trip) => trip.title !== title))
-  const editTrip = (trip: Trip) => {
-    console.log('editTrip, trip edited:', trip)
+
+  const addOrUpdateTrip = (trip: Trip) => {
+    setTripSelectedIdTitle(trip.title)
+    const tripData = getTripDataByTitle()
+    if (!tripData) {
+      setTrips([trip, ...trips])
+    } else {
+      const updatedTrips = [...trips]
+      updatedTrips[tripData.id] = trip
+      setTrips(updatedTrips)
+    }
   }
 
   return (
@@ -47,7 +56,7 @@ export const TripsProvider: React.FC<{ children: React.ReactNode }> = ({
         getTripDataById,
         getTripDataByTitle,
         deleteTrip,
-        editTrip
+        addOrUpdateTrip
       }}
     >
       {children}
