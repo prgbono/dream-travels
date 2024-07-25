@@ -1,18 +1,17 @@
-- Tests para el context
-- Checkboxes
+- Tests for the context.
+- Form. Improve its management with React Hook form and validations (Zod).
+- Checkboxes are not being saved.
 - Mark trip as complete from the detailed view of the trip
-- Navegación bidireccional entre viajes completados y aquellos aún por completar
-- VIsta de completados
-- Plus
-- Context a LocalStorage
-- Popular la api al cerrar la app
-
-- Map de itinerary al crear trips
-- Explicar lo de usar title como id
-- Validar form (Zod)
-- Testear formulario
-- Handle errors en los endpoints
-- Spinner para la carga inicial. Controlar los errores y el loading cuando hacemos fetch.
-- Pruebas para el filtro
+- Bidirectional navigation between completed trips and those yet to be completed should be possible.
+- There will be a view where we can find the trips that you already completed in the past, possibly similar to the view of upcoming trips.
+- In this view, you will also be able to set a trip as upcoming, in case you want to repeat it. You never know .
+- The application should work inside a browser on any device.
+- Plus section
+- Context a LocalStorage to avoid loosing data when refreshing.
+- Upload state of the app (context) to the cloud once the app is closed.
+- Rendering and saving itineraries
+- Handle errors when fetching
+- Loading and not found views
+- Test the filter
 - Metadata
-- Logica del close para permitir 'Esc' y pinchar fuera (no sólo la equis para cerrar)
+- Allow close pop-ups by pressing 'Esc' and click outside the pop-up (not only close button)
