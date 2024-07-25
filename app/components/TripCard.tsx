@@ -15,7 +15,7 @@ export const TripCard: React.FC<TripCardProps> = ({
   setIsTripFormOpened
 }) => {
   const { description, photo_url, title } = trip
-  const { deleteTrip, editTrip, setTripSelectedTitle } = useTrips()
+  const { deleteTrip, setTripSelectedTitle } = useTrips()
 
   const handleSelectedTrip = (title: string) => {
     setTripSelectedTitle(title)

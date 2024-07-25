@@ -5,15 +5,12 @@ import { useTrips } from '../hooks'
 import { CloseButton, Popup } from '../ui'
 
 type TripDetailsProps = {
+  tripTitle: string
   setIsTripDetailsOpened: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-// In case we need more detailed data from a trip, a call to api were needed (and <Suspense />)
-// const getTripData = async (id: number) => {
-//   return await fetchTripById(id)
-// }
-
 export const TripDetails: React.FC<TripDetailsProps> = ({
+  tripTitle,
   setIsTripDetailsOpened
 }) => {
   const { updateTripStatus, getTripDataByTitle } = useTrips()
@@ -23,7 +20,7 @@ export const TripDetails: React.FC<TripDetailsProps> = ({
   useEffect(() => {
     setTrip(getTripDataByTitle())
     setIsCompleted(trip?.status === 'done')
-  }, [getTripDataByTitle, trip?.status])
+  }, [getTripDataByTitle, trip?.status, tripTitle])
 
   const handleChangeStatusCheckbox = () => {
     const newStatus = !isCompleted ? 'done' : 'todo'

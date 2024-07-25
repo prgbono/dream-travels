@@ -9,7 +9,7 @@ type TripFormProps = {
 }
 
 const TripForm: React.FC<TripFormProps> = ({ trip, setIsTripFormOpened }) => {
-  // TODO: React Hook Form
+  // TODO: Use React Hook Form and Zod for validations
   const [tripName, setTripName] = useState(trip ? trip.title : '')
   const [tripIntro, setTripIntro] = useState(trip ? trip.introduction : '')
   const [tripDescription, setTripDescription] = useState(
@@ -26,7 +26,7 @@ const TripForm: React.FC<TripFormProps> = ({ trip, setIsTripFormOpened }) => {
       introduction: tripIntro,
       photo_url: tripImage,
       status: 'todo',
-      // TODO:
+      // TODO: Itinerary logic
       itinerary: []
     }
     addOrUpdateTrip(newTrip)
@@ -87,7 +87,7 @@ const TripForm: React.FC<TripFormProps> = ({ trip, setIsTripFormOpened }) => {
               onChange={(e) => setTripImage(e.target.value)}
             />
           </div>
-          {/*  TODO: Itenerary */}
+          {/*  TODO: Itenerary Logic */}
           <div className="mb-4">
             <label className="block text-gray-700 mb-4">
               Day by day itinerary

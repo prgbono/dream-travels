@@ -35,9 +35,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# TODO file
-TODO.md
-
 # local VSCode settings
 .vscode
 

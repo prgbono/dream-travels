@@ -1,0 +1,18 @@
+- Tests para el context
+- Checkboxes
+- Mark trip as complete from the detailed view of the trip
+- Navegación bidireccional entre viajes completados y aquellos aún por completar
+- VIsta de completados
+- Plus
+- Context a LocalStorage
+- Popular la api al cerrar la app
+
+- Map de itinerary al crear trips
+- Explicar lo de usar title como id
+- Validar form (Zod)
+- Testear formulario
+- Handle errors en los endpoints
+- Spinner para la carga inicial. Controlar los errores y el loading cuando hacemos fetch.
+- Pruebas para el filtro
+- Metadata
+- Logica del close para permitir 'Esc' y pinchar fuera (no sólo la equis para cerrar)
