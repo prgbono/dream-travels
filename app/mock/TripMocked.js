@@ -1,23 +1,29 @@
 export const tripMocked = {
-  id: 1,
-  title: 'Portugal',
+  id: 6,
+  title: 'Slovenia',
   description:
-    'Embark on a journey through Portugal, where the charming streets of Lisbon captivate you, the golden beaches of the Algarve await, and Portuguese cuisine delights with authentic flavors. Explore castles in Sintra and create unforgettable memories in this destination full of history and beauty. Portugal invites you to experience something truly unique!',
+    'Embark on a picturesque journey to Slovenia, where the charming streets of Ljubljana enchant, the emerald waters of Lake Bled captivate, and the flavors of Slovenian cuisine delight your taste buds. From the medieval charm of Škofja Loka to the majestic Triglav National Park, Slovenia invites you to explore its diverse landscapes and embrace the warmth of its rich cultural heritage.',
   photo_url:
-    'https://a.cdn-hotels.com/gdcs/production82/d1923/447a348f-f875-4885-b00a-e9a90603fef5.jpg',
-  status: 'todo',
+    'https://miro.medium.com/v2/resize:fit:1400/1*h_nQx6iZZ3wUe-RTgzlMjw.jpeg',
+  status: 'done',
   itinerary: [
     {
       day: 1,
-      location: 'Lisbon',
-      description: 'Explore the Alfama neighborhood and visit São Jorge Castle.'
+      location: 'Ljubljana',
+      description:
+        'Stroll through the historic streets of Ljubljana, visit Ljubljana Castle, and indulge in local delicacies at the Central Market.'
     },
     {
       day: 2,
-      location: 'Lisbon',
+      location: 'Bled',
       description:
-        'Visit the Jerónimos Monastery and the Monument to the Discoveries.'
+        'Experience the magic of Lake Bled, take a traditional pletna boat to Bled Island, and hike to Bled Castle for panoramic views.'
+    },
+    {
+      day: 3,
+      location: 'Škofja Loka',
+      description:
+        'Explore the medieval town of Škofja Loka, wander through its charming old town, and visit the Škofja Loka Castle.'
     }
-  ],
-  completed: false
+  ]
 }

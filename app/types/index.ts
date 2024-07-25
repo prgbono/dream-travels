@@ -4,7 +4,7 @@ export type Trip = {
   description: string
   introduction?: string
   photo_url: string
-  status: string
+  status: status
   itinerary: Itinerary[]
 }
 
@@ -13,3 +13,5 @@ type Itinerary = {
   location: string
   description: string
 }
+
+type status = 'todo' | 'done'
