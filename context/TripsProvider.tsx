@@ -11,7 +11,7 @@ export const TripsProvider: React.FC<{ children: React.ReactNode }> = ({
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
   const [tripSelectedId, setTripSelectedId] = useState<number>()
-  const [tripSelectedIdTitle, setTripSelectedIdTitle] = useState<string>()
+  const [tripSelectedTitle, setTripSelectedTitle] = useState<string>()
 
   useEffect(() => {
     fetchTrips()
@@ -27,21 +27,29 @@ export const TripsProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const getTripDataById = () => trips.find((trip) => trip.id === tripSelectedId)
   const getTripDataByTitle = () =>
-    trips.find((trip) => trip.title === tripSelectedIdTitle)
+    trips.find((trip) => trip.title === tripSelectedTitle)
   const deleteTrip = (title: string) =>
     setTrips(trips.filter((trip) => trip.title !== title))
 
-  const addOrUpdateTrip = (trip: Trip) => {
-    setTripSelectedIdTitle(trip.title)
+  const addOrUpdateTrip = (newTrip: Trip) => {
+    setTripSelectedTitle(newTrip.title)
     const tripData = getTripDataByTitle()
     if (!tripData) {
-      setTrips([trip, ...trips])
+      setTrips([newTrip, ...trips])
     } else {
       const updatedTrips = [...trips]
-      updatedTrips[tripData.id - 1] = trip
+      updatedTrips[tripData.id - 1] = newTrip
       // FIXME: This will fail while there is a duplicated id = 5 in the data
       setTrips(updatedTrips)
     }
+  }
+
+  const updateTripStatus = (title: string, newStatus: boolean) => {
+    // setTrips(
+    trips.map((trip) =>
+      trip.title === title ? { ...trip, status: newStatus } : trip
+    )
+    // )
   }
 
   return (
@@ -52,12 +60,13 @@ export const TripsProvider: React.FC<{ children: React.ReactNode }> = ({
         error,
         tripSelectedId,
         setTripSelectedId,
-        tripSelectedIdTitle,
-        setTripSelectedIdTitle,
+        tripSelectedTitle,
+        setTripSelectedTitle,
         getTripDataById,
         getTripDataByTitle,
         deleteTrip,
-        addOrUpdateTrip
+        addOrUpdateTrip,
+        updateTripStatus
       }}
     >
       {children}

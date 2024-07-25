@@ -2,11 +2,9 @@ import Image from 'next/image'
 import { Trip } from '../types'
 import { useEffect, useState } from 'react'
 import { useTrips } from '../hooks'
-import Popup from '../ui/Popup'
-import { CloseButton } from '../ui'
+import { CloseButton, Popup } from '../ui'
 
 type TripDetailsProps = {
-  tripTitle: string
   setIsTripDetailsOpened: React.Dispatch<React.SetStateAction<boolean>>
 }
 
@@ -16,14 +14,24 @@ type TripDetailsProps = {
 // }
 
 export const TripDetails: React.FC<TripDetailsProps> = ({
-  tripTitle,
   setIsTripDetailsOpened
 }) => {
-  const { getTripDataByTitle } = useTrips()
+  const { updateTripStatus, getTripDataByTitle } = useTrips()
   const [trip, setTrip] = useState<Trip>()
+  const [isCompleted, setIsCompleted] = useState(trip?.status === 'done')
+
   useEffect(() => {
     setTrip(getTripDataByTitle())
-  }, [getTripDataByTitle])
+    setIsCompleted(trip?.status === 'done')
+  }, [getTripDataByTitle, trip?.status])
+
+  const handleChangeStatusCheckbox = () => {
+    const newStatus = !isCompleted ? 'done' : 'todo'
+    setIsCompleted(!isCompleted)
+    if (trip) {
+      updateTripStatus(trip.title, newStatus)
+    }
+  }
 
   return !trip || Object.keys(trip).length === 0 ? (
     <h1>we do not have that trip... so far!</h1>
@@ -53,6 +61,8 @@ export const TripDetails: React.FC<TripDetailsProps> = ({
               <input
                 type="checkbox"
                 className="form-checkbox h-5 w-5 text-blue-600"
+                checked={isCompleted}
+                onChange={() => handleChangeStatusCheckbox()}
               />
               <span className="text-sm">Mark as completed</span>
             </label>

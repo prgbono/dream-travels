@@ -15,10 +15,10 @@ export const TripCard: React.FC<TripCardProps> = ({
   setIsTripFormOpened
 }) => {
   const { description, photo_url, title } = trip
-  const { deleteTrip, editTrip, setTripSelectedIdTitle } = useTrips()
+  const { deleteTrip, editTrip, setTripSelectedTitle } = useTrips()
 
   const handleSelectedTrip = (title: string) => {
-    setTripSelectedIdTitle(title)
+    setTripSelectedTitle(title)
     setIsTripDetailsOpened(true)
   }
 
@@ -27,7 +27,7 @@ export const TripCard: React.FC<TripCardProps> = ({
   }
 
   const handleEditTrip = (trip: Trip) => {
-    setTripSelectedIdTitle(trip.title)
+    setTripSelectedTitle(trip.title)
     setIsTripFormOpened(true)
   }
 

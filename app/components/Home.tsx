@@ -11,7 +11,7 @@ import TripForm from './TripForm'
 
 const Home: React.FC = () => {
   const [filter, setFilter] = useState<string>('')
-  const { trips, isLoading, error, getTripDataByTitle, tripSelectedIdTitle } =
+  const { trips, isLoading, error, getTripDataByTitle, tripSelectedTitle } =
     useTrips()
   const [isTripDetailsOpened, setIsTripDetailsOpened] = useState<boolean>(false)
   const [isTripFormOpened, setIsTripFormOpened] = useState<boolean>(false)
@@ -60,7 +60,7 @@ const Home: React.FC = () => {
 
       {isTripDetailsOpened && (
         <TripDetails
-          tripTitle={tripSelectedIdTitle}
+          tripTitle={tripSelectedTitle}
           setIsTripDetailsOpened={setIsTripDetailsOpened}
         />
       )}

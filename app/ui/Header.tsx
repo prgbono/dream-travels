@@ -6,9 +6,9 @@ type HeaderProps = {
 }
 
 export const Header: React.FC<HeaderProps> = ({ setIsTripFormOpened }) => {
-  const { setTripSelectedIdTitle } = useTrips()
+  const { setTripSelectedTitle } = useTrips()
   const handleCreateNewTrip = () => {
-    setTripSelectedIdTitle('')
+    setTripSelectedTitle('')
     setIsTripFormOpened(true)
   }
 
